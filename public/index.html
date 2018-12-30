@@ -1,0 +1,23 @@
+<html>
+<body>
+	<p id="content"></p>
+	<p><button id="loadCat">Lazy load <b>Cat</b></button></p>
+	<script src="../dist/raw-html-attribute-updater.bundle.js"></script>
+	<script type="text/javascript">
+
+        var htmlStr = '<p></p>\n' +
+            '<img style="max-width: 50%;float:none;height: 200px;margin-top : 3%" src="/image/showWorkOrderImg?fileName=12345.png" alt="undefined"/>\n' +
+            '<p></p>\n' +
+            '<p id="abc" class="def xxx gh" style="text-align:center;"><span style="color: rgb(127,127,127);">Please align the paper to the left.</span>&nbsp;</p>\n' +
+            '<p><img style="float:none;height: 200px;margin-top : 3%" src="/image/showWorkOrderImg?fileName=123456.png" alt="undefined"/></p>\n' +
+            '<p style="text-align:center;">※Please ask your manager if you have any issues! ※&nbsp;&nbsp;&nbsp;&nbsp;</p>';
+
+        var elementName = 'img';
+        var attrName = 'style';
+        var attrValue = 'max-width:100%';
+
+        console.log('final : ' + RawHtmlAttributeUpdater.storeAttrField(attrName, attrValue, elementName, htmlStr));
+
+	</script>
+</body>
+</html>
