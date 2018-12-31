@@ -1,7 +1,7 @@
 {
   "name": "raw-html-attribute-updater",
-  "version": "1.3.7",
-  "description": "Raw-html-attribute-updater is an open source JavaScript library. This is useful when updating an attribute of all same kinds of elements in raw html saved or edited by Wysiwyg.",
+  "version": "1.3.8",
+  "description": "This is useful when updating an attribute of all same kinds of elements in raw html saved or edited by Wysiwyg. Moreover, as the core parsing logic is a strong combination of regular expressions. You can use this library for not only html but also any kinds of tag-based resources.",
   "main": "src/entry.js",
   "scripts": {
     "build": "gulp",
