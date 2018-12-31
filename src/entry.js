@@ -1,6 +1,6 @@
 import RawHtmlAttributeUpdater from './raw-html-attribute-updater';
 
-export default RawHtmlAttributeUpdater; // when you do 'npm run build', annotate this.
+export default RawHtmlAttributeUpdater; // *** when you do 'npm run build', annotate this, but must not be annotated when 'npm publish'
 
 try {
     module.exports = {
