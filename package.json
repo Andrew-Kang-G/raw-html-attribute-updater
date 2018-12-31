@@ -1,6 +1,6 @@
 {
   "name": "raw-html-attribute-updater",
-  "version": "1.3.5",
+  "version": "1.3.7",
   "description": "Raw-html-attribute-updater is an open source JavaScript library. This is useful when updating an attribute of all same kinds of elements in raw html saved or edited by Wysiwyg.",
   "main": "src/entry.js",
   "scripts": {
@@ -12,12 +12,14 @@
     "url": "git+https://github.com/Andrew-Kang-G/raw-html-attribute-updater.git"
   },
   "keywords": [
-    "gulp",
-    "es6",
-    "babel",
-    "webpack",
-    "mocha",
-    "chai"
+    "html",
+    "update html",
+    "raw html",
+    "update tag",
+    "Wysiwyg",
+    "img tag",
+    "parsing",
+    "massive tag update"
   ],
   "author": "Andrew Kang",
   "license": "MIT",

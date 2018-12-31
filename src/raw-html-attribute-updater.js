@@ -193,7 +193,6 @@ class RawHtmlAttributeUpdater {
     /*
     *  The prefix here 'Store' means 'Create' if the key doesn't exist, or 'Update'.
     * */
-
     storeAttrField(attrName, attrValue, elementName, htmlStr) {
 
         try {

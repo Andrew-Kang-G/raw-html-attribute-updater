@@ -2,7 +2,8 @@
 
 ## Overview
 
-**Raw-html-attribute-updater** is an open source JavaScript library. This is useful when **updating an attribute of all same kinds of elements in raw html** saved or edited by Wysiwyg.
+**Raw-html-attribute-updater** is an open source JavaScript library. 
+This is useful when **updating an attribute of all same kinds of elements in raw html** saved or edited by Wysiwyg. Moreover, the core parsing logic is a strong combination of regular expressions. You can use this library for not only html but also any kinds of tag-based resources.
 
 ## Example Usage
 
@@ -30,7 +31,7 @@ For ES6 npm users, 'npm install --save raw-html-attribute-updater'.
 
 import RawHtmlAttributeUpdater from './raw-html-attribute-updater';
 
-new RawHtmlAttributeUpdater()..storeAttrField(attrName, attrValue, elementName, htmlStr)  // Returns htmlStr that has been updated with elementName, attrName, attrValue.
+new RawHtmlAttributeUpdater().storeAttrField(attrName, attrValue, elementName, htmlStr)  // Returns htmlStr that has been updated with elementName, attrName, attrValue.
 
 ```
 
