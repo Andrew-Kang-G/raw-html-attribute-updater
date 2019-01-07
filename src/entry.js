@@ -4,8 +4,8 @@ export default RawHtmlAttributeUpdater; // *** when you do 'npm run build', anno
 
 try {
     module.exports = {
-        storeAttrField: function (attrName, attrValue, elementName, htmlStr) {
-            return new RawHtmlAttributeUpdater().storeAttrField(attrName, attrValue, elementName, htmlStr);
+        storeAttrField: function (attrName, attrValue, elementName, htmlStr, isIdWay) {
+            return new RawHtmlAttributeUpdater().storeAttrField(attrName, attrValue, elementName, htmlStr, isIdWay);
         }
     };
 }catch (e){

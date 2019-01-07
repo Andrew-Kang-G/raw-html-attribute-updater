@@ -46,7 +46,7 @@ const ValidObj = {
     },
 
     isAttrValueValid (sth) {
-        if (sth && typeof sth === 'string' && /^[^/]*$/.test(sth)) {
+        if (sth && typeof sth === 'string' && /^[^/]+$/.test(sth)) {
             return true;
         }
         return false;
@@ -103,9 +103,13 @@ ProcessObj.addValueToAttrField = function (attrName, attrValue, elementField, de
 
     let t = elementField;
 
+    //console.log(t);
+
     t = t.replace(new RegExp('\\b' + attrName + '[\\n\\r\\t\\s]*=[\\n\\r\\t\\s]*' +
-        '(?:([\\u0022])(.*?)(?:[^\\u005C]|)([\\u0022])|([\\u0027])(.*?)(?:[^\\u005C]|)([\\u0027]))', "g"),
+        '(?:([\\u0022])(.*?)([\\u0022])|([\\u0027])(.*?)([\\u0027]))', "g"),
         attrName + '=$1$4$2$5' + delimiter + attrValue + '$3$6 ');
+
+    //console.log(t);
 
     t = t.replace(new RegExp(delimiter + delimiter, "g"), delimiter); // delimiter should be a character that does not need to be escaped.
     t = t.replace(new RegExp('(=[\\n\\r\\t\\s]*[\\u0022\\u0027])' + delimiter, "g"), '$1'); // delimiter should be a character that does not need to be escaped.
@@ -115,7 +119,7 @@ ProcessObj.addValueToAttrField = function (attrName, attrValue, elementField, de
 ProcessObj.overwriteValueToAttrField = function (attrName, attrValue, elementField) {
 
     return elementField.replace(new RegExp('\\b' + attrName + '[\\n\\r\\t\\s]*=[\\n\\r\\t\\s]*' +
-        '(?:([\\u0022])(.*?)(?:[^\\u005C]|)([\\u0022])|([\\u0027])(.*?)(?:[^\\u005C]|)([\\u0027]))', "g"), attrName + '=$1$4' + attrValue + '$3$6 ');
+        '(?:([\\u0022])(.*?)([\\u0022])|([\\u0027])(.*?)([\\u0027]))', "g"), attrName + '=$1$4' + attrValue + '$3$6 ');
 
 };
 ProcessObj.overwriteValueToAttrValueField = function (attrName, attrValue, elementField) {
@@ -125,7 +129,7 @@ ProcessObj.overwriteValueToAttrValueField = function (attrName, attrValue, eleme
     let keyOfAttrValue = attrValue.split(':')[0].trim();
 
     let rx3_2 = new RegExp('\\b' + attrName + '[\\n\\r\\t\\s]*=[\\n\\r\\t\\s]*' +
-        '(?:([\\u0022])(.*?)(?:[^\\u005C]|)([\\u0022])|([\\u0027])(.*?)(?:[^\\u005C]|)([\\u0027]))', "g");
+        '(?:([\\u0022])(.*?)([\\u0022])|([\\u0027])(.*?)([\\u0027]))', "g");
 
     let matches = [];
     let match = {};
@@ -190,13 +194,13 @@ RawHtmlAttributeUpdaterError.prototype = Object.create(Error.prototype, {
 *     Public part
 * */
 class RawHtmlAttributeUpdater {
+
     /*
     *  The prefix here 'Store' means 'Create' if the key doesn't exist, or 'Update'.
     * */
-    storeAttrField(attrName, attrValue, elementName, htmlStr) {
+    storeAttrField(attrName, attrValue, elementName, htmlStr, isIdWay) {
 
         try {
-
 
             htmlStr = htmlStr.trim();
             elementName = elementName.trim();
@@ -214,12 +218,14 @@ class RawHtmlAttributeUpdater {
             }
             let isAttrNameValid_bool = ValidObj.isAttrNameValid(attrName);
             if (!isAttrNameValid_bool) {
-                throw new RawHtmlAttributeUpdaterError("Not valid argument : attrName : The first letter must be an alphabet and the following chracters must consist of alphabets and numbers");
+                throw new RawHtmlAttributeUpdaterError("Not valid argument : attrName : The first letter must be an alphabet and the following characters must consist of alphabets and numbers");
             }
             let isAttrValueValid_bool = ValidObj.isAttrValueValid(attrValue);
             if (!isAttrValueValid_bool) {
-                throw new RawHtmlAttributeUpdaterError("Not valid argument : attrValue : The character '/' should not be used");
+                throw new RawHtmlAttributeUpdaterError("Not valid argument : attrValue : The character '/' should not be used, and the length must be longer than 1");
             }
+
+
 
             /*
             *  Description : 'rx1' is a regex to distill all opening tags with each element name, 'elementName'
@@ -259,13 +265,22 @@ class RawHtmlAttributeUpdater {
                     '(?:[\\t\\s\\u002F]|)', "g");*/
 
                 let rx2 = new RegExp('\\b' + attrName + '[\\n\\r\\t\\s]*=[\\n\\r\\t\\s]*' +
-                    '(?:([\\u0022])(.*?)(?:[^\\u005C]|)([\\u0022])|([\\u0027])(.*?)(?:[^\\u005C]|)([\\u0027]))', "g"); // rx2 : Check if the attribute field exists.
+                    '(?:([\\u0022])(.*?)([\\u0022])|([\\u0027])(.*?)([\\u0027]))', "g"); // rx2 : Check if the attribute field exists.
 
                 let isAttrNameMatched = false;
                 let attrNameMatches = val.value.match(rx2);
 
+
+                /*
+                *   From version 1.5
+                * */
+                let attrName_virtual = attrName;
+                if(isIdWay === true){
+                    attrName_virtual = 'id'
+                }
+
                 /* ex) <p attribute=... /> if p has the attribute? */
-                switch (attrName) {
+                switch (attrName_virtual) {
 
                     case 'class' :
 
@@ -286,6 +301,10 @@ class RawHtmlAttributeUpdater {
                             }
 
                         }
+
+                        /*  element-level sanity process */
+                        strToBeReplaced = strToBeReplaced.replace(/([\s]){2,}/g, '$1');
+                        strToBeReplaced = strToBeReplaced.replace(/([\t]){2,}/g, '$1');
 
                         switch (isAttrNameMatched) {
                             /* the attribute does not exist */
@@ -323,6 +342,11 @@ class RawHtmlAttributeUpdater {
                             }
 
                         }
+
+                        /*  element-level sanity process */
+                        strToBeReplaced = strToBeReplaced.replace(/([\s]){2,}/g, '$1');
+                        strToBeReplaced = strToBeReplaced.replace(/([\t]){2,}/g, '$1');
+                        //console.log(strToBeReplaced);
 
                         switch (isAttrNameMatched) {
                             /* the attribute does not exist */
@@ -366,6 +390,10 @@ class RawHtmlAttributeUpdater {
 
                         }
 
+                        /*  element-level sanity process */
+                        strToBeReplaced = strToBeReplaced.replace(/([\s]){2,}/g, '$1');
+                        strToBeReplaced = strToBeReplaced.replace(/([\t]){2,}/g, '$1');
+
                         switch (isAttrNameMatched) {
                             /* the attribute does not exist */
                             case false :
@@ -402,6 +430,10 @@ class RawHtmlAttributeUpdater {
                             }
 
                         }
+
+                        /*  element-level sanity process */
+                        strToBeReplaced = strToBeReplaced.replace(/([\s]){2,}/g, '$1');
+                        strToBeReplaced = strToBeReplaced.replace(/([\t]){2,}/g, '$1');
 
                         switch (isAttrNameMatched) {
                             /* the attribute does not exist */

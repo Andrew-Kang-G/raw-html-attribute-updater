@@ -3,8 +3,21 @@
 ## Overview
 
 **Raw-html-attribute-updater** is an open source JavaScript library. 
-This is useful when **updating an attribute of all same kinds of elements in raw html** saved or edited by Wysiwyg. Moreover, as the core parsing logic is a strong combination of regular expressions, you can use this library for not only html but also any kind of tag-based resources.
+This is useful when **updating an attribute of all same kinds of elements in raw html** saved or edited by Wysiwyg. Moreover, as the core parsing logic is a strong combination of regular expressions, there are more advantages compared to well-known general ways.
 
+1) You can use this library for not only html but also any kind of tag-based resources.
+2) Single(or a mix of single and double) quotes based html tags can be recognized.
+
+ex) The img tag starts with =' below. This is not usually recognized in the general ways.
+
+```
+var htmlStr = "<img style='max-width: 50%;float:none;height: 200px;margin-top : 3%;' src='/image/showWorkOrderImg?fileName=12345.png' alt=\"undefined\"/>";
+```
+
+3) Easy-to-use.
+
+In addition, this library is also available in React as I have add 'babel-preset-react'.
+ 
 ## Example Usage
 
 #### Installation & Usage
@@ -21,6 +34,7 @@ var htmlStr = '<p></p>\n' +
 var elementName = 'img';
 var attrName = 'style';
 var attrValue = 'max-width:100%';
+var isIdWay = false; // available from version 1.5.0. if you use the parameter, this enables 'overwriting previous attribute values' regardless of what kind of 'attrName'.
 	
 ```
 
@@ -31,7 +45,16 @@ For ES6 npm users, 'npm install --save raw-html-attribute-updater'.
 
 import RawHtmlAttributeUpdater from './raw-html-attribute-updater';
 
-new RawHtmlAttributeUpdater().storeAttrField(attrName, attrValue, elementName, htmlStr)  // Returns htmlStr that has been updated with elementName, attrName, attrValue.
+/* @params 
+*   string : attrName, attrValue, elementName, htmlStr (necessary)
+*            isIdWay (not necessaray, default : false)
+*/
+
+new RawHtmlAttributeUpdater().storeAttrField(attrName, attrValue, elementName, htmlStr)  // returns htmlStr that has been updated with elementName, attrName, attrValue.
+
+// if it does not work above, use the following usage.
+
+RawHtmlAttributeUpdater.storeAttrField(attrName, attrValue, elementName, htmlStr)  // returns htmlStr that has been updated with elementName, attrName, attrValue.
 
 ```
 
@@ -56,9 +79,11 @@ For ES5 users,
 
 #### Syntax Overview
 
-##### The function above returns different results according to three types of attrName below.
+##### The function above returns different results according to **three types of attrName** below.
 
 ***
+
+###### [1] style-way
 
 - attrName : style (before)
 
@@ -86,12 +111,14 @@ htmlStr = '<p></p>\n' +
 <img style="max-width:100%;float:none;height: 200px;margin-top : 3%" src="/image/showWorkOrderImg?fileName=12345.png" alt="undefined"/>
 <p></p>
 <p id="abc" class="def xxx gh" style="text-align:center;"><span style="color: rgb(127,127,127);">Please align the paper to the left.</span>&nbsp;</p>
-<p><img style="float:none;height: 200px;margin-top : 3;max-width:100%"  src="/image/showWorkOrderImg?fileName=123456.png" alt="undefined"/></p>
+<p><img style="float:none;height: 200px;margin-top : 3%;max-width:100%"  src="/image/showWorkOrderImg?fileName=123456.png" alt="undefined"/></p>
 <p style="text-align:center;">※Please ask your manager if you have any issues! ※&nbsp;&nbsp;&nbsp;&nbsp;</p>
 
 ```
 
 ***
+
+###### [2] id-way
 
 - attrName : id (before)
 
@@ -126,6 +153,8 @@ htmlStr = '<p></p>\n' +
 
 ***
 
+###### [3] class-way
+
 - attrName : class (before)
 
 ``` javascript
@@ -158,6 +187,8 @@ htmlStr = '<p></p>\n' +
 ```
 
 ***
+
+###### [Plus] random-way
 
 - attrName : random (before)
 

@@ -1,7 +1,7 @@
 {
   "name": "raw-html-attribute-updater",
-  "version": "1.3.9",
-  "description": "This is useful when updating an attribute of all same kinds of elements in raw html saved or edited by Wysiwyg. Moreover, as the core parsing logic is a strong combination of regular expressions, you can use this library for not only html but also any kind of tag-based resources.",
+  "version": "1.5.0",
+  "description": "This is useful when updating an attribute of all same kinds of elements in raw html saved or edited by Wysiwyg. Moreover, as the core parsing logic is a strong combination of regular expressions, there are more advantages compared to well-known general ways. One of the advantages is that single(or a mix of single and double) quotes based html tags can be recognized.",
   "main": "src/entry.js",
   "scripts": {
     "build": "gulp",
