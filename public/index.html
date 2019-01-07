@@ -1,6 +1,7 @@
 <html>
 <body>
 	<p id="content"></p>
+
 	<script src="../dist/raw-html-attribute-updater.bundle.js"></script>
 	<script type="text/javascript">
 
@@ -16,10 +17,10 @@
             "src='/image/showWorkOrderImg?fileName=12345.png' alt='undefined'/>";*/
 
         var elementName = 'img';
-        var attrName = 'style';
-        var attrValue = 'max-width:120%';
+        var attrName = 'src';
+        var attrValue = 'xxx';
 
-        console.log('final : ' + RawHtmlAttributeUpdater.storeAttrField(attrName, attrValue, elementName, htmlStr,false));
+        console.log('final : ' + RawHtmlAttributeUpdater.storeAttrField(attrName, attrValue, elementName, htmlStr,true));
 
 	</script>
 </body>

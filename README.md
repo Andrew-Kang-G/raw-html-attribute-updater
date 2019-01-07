@@ -43,7 +43,7 @@ For ES6 npm users, 'npm install --save raw-html-attribute-updater'.
 
 ``` javascript
 
-import RawHtmlAttributeUpdater from './raw-html-attribute-updater';
+import RawHtmlAttributeUpdater from 'raw-html-attribute-updater';
 
 /* @params 
 *   string : attrName, attrValue, elementName, htmlStr (necessary)
