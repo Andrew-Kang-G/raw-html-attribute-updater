@@ -193,7 +193,7 @@ RawHtmlAttributeUpdaterError.prototype = Object.create(Error.prototype, {
 /*
 *     Public part
 * */
-class RawHtmlAttributeUpdater {
+export default {
 
     /*
     *  The prefix here 'Store' means 'Create' if the key doesn't exist, or 'Update'.
@@ -471,5 +471,5 @@ class RawHtmlAttributeUpdater {
     }
 
 }
-export default RawHtmlAttributeUpdater;
+
 
