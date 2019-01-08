@@ -5,16 +5,15 @@
 **Raw-html-attribute-updater** is an open source JavaScript library. 
 This is useful when **updating an attribute of all same kinds of elements in raw html** saved or edited by Wysiwyg. Moreover, as the core parsing logic is a strong combination of regular expressions, there are more advantages compared to well-known general ways.
 
-1) You can use this library for not only html but also any kind of tag-based resources.
-2) Single(or a mix of single and double) quotes based html tags can be recognized.
+1) Easy-to-use.
+2) You can use this library for not only html but also any kind of tag-based resources.
+3) Single(or a mix of single and double) quotes based html tags can be recognized.
 
 ex) The img tag starts with =' below. This is not usually recognized in the general ways.
 
 ```
 var htmlStr = "<img style='max-width: 50%;float:none;height: 200px;margin-top : 3%;' src='/image/showWorkOrderImg?fileName=12345.png' alt=\"undefined\"/>";
 ```
-
-3) Easy-to-use.
 
  
 ## Example Usage
