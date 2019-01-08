@@ -16,7 +16,6 @@ var htmlStr = "<img style='max-width: 50%;float:none;height: 200px;margin-top : 
 
 3) Easy-to-use.
 
-In addition, this library is also available in React as I have add 'babel-preset-react'.
  
 ## Example Usage
 
@@ -49,10 +48,6 @@ import RawHtmlAttributeUpdater from 'raw-html-attribute-updater';
 *   string : attrName, attrValue, elementName, htmlStr (necessary)
 *            isIdWay (not necessaray, default : false)
 */
-
-new RawHtmlAttributeUpdater().storeAttrField(attrName, attrValue, elementName, htmlStr)  // returns htmlStr that has been updated with elementName, attrName, attrValue.
-
-// if it does not work above, use the following usage.
 
 RawHtmlAttributeUpdater.storeAttrField(attrName, attrValue, elementName, htmlStr)  // returns htmlStr that has been updated with elementName, attrName, attrValue.
 
