@@ -510,7 +510,7 @@ export default {
 
                         }
 
-                        console.log(strToBeReplaced);
+                        //console.log(strToBeReplaced);
 
                         /*  element-level sanity process */
                         strToBeReplaced = strToBeReplaced.replace(/([\s]){2,}/g, '$1');
