@@ -22,7 +22,7 @@
             var seconds = Math.round(timeDiff);
             console.log(seconds + " ms");
         }
-        var htmlStr = '<body><p></p>\n' +
+        var htmlStr = '<body><p><p href="foo" title="5>3"> Oops </p> </p>\n' +
             '<img style=\' = > float : none ; height: 200px;max-width: 50%;margin-top : 3%\' src="/image/showWorkOrderImg?fileName=12345.png" alt="undefined"/>\n' +
             '<!--  <<p ></p>  -->\n' +
             '  <p id="abc" 가나></p>>  \n' +
@@ -39,7 +39,7 @@
         var attrValue = 'text-align:middle';
 
         start();
-        console.log('final : ' + RawHtmlAttributeUpdater.storeAttrField(attrName, attrValue, elementName, htmlStr));
+        console.log('final : ' + RawHtmlAttributeUpdater.storeAttrField(attrName, attrValue, elementName, htmlStr, false, false));
         end();
 
 

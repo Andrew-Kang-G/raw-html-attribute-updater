@@ -5,7 +5,7 @@
 **Raw-html-attribute-updater** is an open source JavaScript library. 
 This is useful when **updating an attribute of all same kinds of elements in raw html** saved or edited by Wysiwyg. 
 The core parsing logic of this is a strong combination of regular expressions, which means it has no dependency on any existing parsing
-libraries. Many developers argue that regular expressions can't parse a html (https://stackoverflow.com/questions/1732348/regex-match-open-tags-except-xhtml-self-contained-tags/1732454#1732454), but I would like to show you how to solve the question. One thing that I would like to tell you is a regex indicating tags is not simply '<[^>]+>'. This makes exceptions such as ```'<p class="here>to" style="width:100%">'``` where '>' is wrongly inserted. 
+libraries. Many developers argue that regular expressions can't parse a html (https://stackoverflow.com/questions/1732348/regex-match-open-tags-except-xhtml-self-contained-tags/1732454#1732454), but I would like to show you how to solve the question. One thing that I would like to tell you is a regex indicating tags is not simply '<[^>]+>'. This regex fails to parse some cases such as ```'<p class="here>to" style="width:100%">'``` where '>' is inserted in the class attribute. 
 
 ### Advantages
 

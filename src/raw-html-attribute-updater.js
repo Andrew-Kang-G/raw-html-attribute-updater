@@ -277,7 +277,7 @@ const ParserObj = {
             })
         }
 
-        //console.log(matches);
+        console.log(matches);
 
         return matches;
 
@@ -434,7 +434,7 @@ export default {
                             /* the attribute does not exist */
                             case false :
 
-                                strToBeReplaced = val.value.replace(/([\n\r\t\s]*>|\/[\n\r\t\s]*>)/g, ' ' + attrName + '="' + attrValue + '"$1'); // Add to the last part of the tag
+                                strToBeReplaced = val.value.replace(/([\n\r\t\s]*>|\/[\n\r\t\s]*>)$/g, ' ' + attrName + '="' + attrValue + '"$1'); // Add to the last part of the tag
                                 htmlStr = UtilObj.replaceBetween(htmlStr, val.index, val.index + val.value.length, strToBeReplaced);
                                 break;
 
@@ -474,7 +474,7 @@ export default {
                             /* the attribute does not exist */
                             case false :
 
-                                strToBeReplaced = val.value.replace(/([\n\r\t\s]*>|\/[\n\r\t\s]*>)/g, ' ' + attrName + '="' + attrValue + '"$1'); // Add to the last part of the tag
+                                strToBeReplaced = val.value.replace(/([\n\r\t\s]*>|\/[\n\r\t\s]*>)$/g, ' ' + attrName + '="' + attrValue + '"$1'); // Add to the last part of the tag
                                 htmlStr = UtilObj.replaceBetween(htmlStr, val.index, val.index + val.value.length, strToBeReplaced);
                                 break;
 
@@ -520,7 +520,7 @@ export default {
                             /* the attribute does not exist */
                             case false :
 
-                                strToBeReplaced = val.value.replace(/([\n\r\t\s]*>|\/[\n\r\t\s]*>)/g, ' ' + attrName + '="' + attrValue + '"$1'); // Add to the last part of the tag
+                                strToBeReplaced = val.value.replace(/([\n\r\t\s]*>|\/[\n\r\t\s]*>)$/g, ' ' + attrName + '="' + attrValue + '"$1'); // Add to the last part of the tag
                                 htmlStr = UtilObj.replaceBetween(htmlStr, val.index, val.index + val.value.length, strToBeReplaced);
                                 break;
 
@@ -559,7 +559,7 @@ export default {
                             /* the attribute does not exist */
                             case false :
 
-                                strToBeReplaced = val.value.replace(/([\n\r\t\s]*>|\/[\n\r\t\s]*>)/g, ' ' + attrName + '="' + attrValue + '"$1'); // Add to the last part of the tag
+                                strToBeReplaced = val.value.replace(/([\n\r\t\s]*>|\/[\n\r\t\s]*>)$/g, ' ' + attrName + '="' + attrValue + '"$1'); // Add to the last part of the tag
                                 htmlStr = UtilObj.replaceBetween(htmlStr, val.index, val.index + val.value.length, strToBeReplaced);
                                 break;
 
