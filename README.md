@@ -3,22 +3,21 @@
 ## Overview
 
 **Raw-html-attribute-updater** is an open source JavaScript library. 
-This is useful when **updating an attribute of all same kinds of elements in raw html** saved or edited by Wysiwyg. Moreover, as the core parsing logic is a strong combination of regular expressions, there are more advantages compared to well-known general ways.
+This is useful when **updating an attribute of all same kinds of elements in raw html** saved or edited by Wysiwyg. 
+The core parsing logic of this is a strong combination of regular expressions, which means it has no dependency on any existing parsing
+libraries. Many developers argue that regular expressions can't parse a html (https://stackoverflow.com/questions/1732348/regex-match-open-tags-except-xhtml-self-contained-tags/1732454#1732454), but I would like to show you how to solve the question. One thing that I would like to tell you is a regex indicating tags is not simply '<[^>]+>'. This makes exceptions such as ```'<p class="here>to" style="width:100%">'``` where '>' is wrongly inserted. 
+
+### Advantages
 
 1) Easy-to-use.
-2) You can use this library for not only html but also any kind of tag-based resources.
-3) Single(or a mix of single and double) quotes based html tags can be recognized.
-
-ex) The img tag starts with =' below. This is not usually recognized in the general ways.
-
-```
-var htmlStr = "<img style='max-width: 50%;float:none;height: 200px;margin-top : 3%;' src='/image/showWorkOrderImg?fileName=12345.png' alt=\"undefined\"/>";
-```
-
+2) You can use this library for not only html but also any kind of xml-type resources.
+3) Update only a target part preserving all the other parts as they are. 
  
 ## Example Usage
 
 #### Installation & Usage
+
+There are parameters as examples to be used in the usage below.
 
 ``` javascript
 
@@ -29,10 +28,12 @@ var htmlStr = '<p></p>\n' +
             '<p><img style="float:none;height: 200px;margin-top : 3%" src="/image/showWorkOrderImg?fileName=123456.png" alt="undefined"/></p>\n' +
             '<p style="text-align:center;">※Please ask your manager if you have any issues! ※&nbsp;&nbsp;&nbsp;&nbsp;</p>';
 
-var elementName = 'img';
 var attrName = 'style';
 var attrValue = 'max-width:100%';
-var isIdWay = false; // available from version 1.5.0. if you use the parameter, this enables 'overwriting previous attribute values' regardless of what kind of 'attrName'.
+var elementName = 'img';
+
+var isIdWay = false; // available from version 1.5.0. if you use the parameter, this enables 'overwriting previous attribute values' regardless of what kind of 'attrName'. (default : false)
+var commentsAreaIgnore = true; // available from version 1.5.6. if you use the parameter, this enables 'updating only parts not in comments'. (default : true)
 	
 ```
 
