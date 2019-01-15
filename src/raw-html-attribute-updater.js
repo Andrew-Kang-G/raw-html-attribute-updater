@@ -277,7 +277,7 @@ const ParserObj = {
             })
         }
 
-        console.log(matches);
+        //console.log(matches);
 
         return matches;
 
